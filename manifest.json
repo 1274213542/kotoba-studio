@@ -1,0 +1,82 @@
+{
+  "schemaVersion": 1,
+  "title": "ことば · 日语听读",
+  "materials": [
+    {
+      "id": "goodpatch-20261109",
+      "title": "Goodpatch · 1Day 面试",
+      "subtitle": "20 个问题 · 53 个追加练习 · 日语女声",
+      "duration": 1875.7533333333333,
+      "voice": "VOICEVOX Nemo 女声1",
+      "credit": "VOICEVOX Nemo",
+      "questionCount": 20,
+      "cueCount": 357,
+      "materialUrl": "materials/goodpatch-20261109/material.json",
+      "audioUrl": "materials/goodpatch-20261109/audio.mp3",
+      "audioSha256": "8dd29c6a17bae290fc2749307d8253677b6cffa4d168154db1d9d5730b56ae43",
+      "audioBytes": 22510125
+    },
+    {
+      "id": "text-7d19461421d7",
+      "title": "Goodpatch · 文本生成试听",
+      "subtitle": "1 个小节 · 日语女声",
+      "duration": 33.95,
+      "voice": "VOICEVOX Nemo 女声1",
+      "credit": "",
+      "questionCount": 1,
+      "cueCount": 4,
+      "materialUrl": "materials/text-7d19461421d7/material.json",
+      "audioUrl": "materials/text-7d19461421d7/audio.mp3",
+      "audioSha256": "5f16c6b7d69edf59391bd33b19a785ea80bc9e8646f42d797f394b9b08a55822",
+      "audioBytes": 408429
+    }
+  ],
+  "frontendFiles": [
+    {
+      "path": "index.html",
+      "sha256": "705ae82e7e4a47898556c2580902b7810c200c4736673379c640c3aa67a24074",
+      "bytes": 17428
+    },
+    {
+      "path": "design.html",
+      "sha256": "f16607568b3ed486002a00dd2f2485e4670c15d2812a59086cf97f51bdb9742a",
+      "bytes": 8309
+    },
+    {
+      "path": "favicon.svg",
+      "sha256": "4120ceab3698f71dc8793d484938f35774f005538fca0f3526363778c4b8e99d",
+      "bytes": 224
+    },
+    {
+      "path": "tokens.css",
+      "sha256": "62bfe495077b6923379bf1963eef4eaab899a7031ea104ef6f764475f5f9b4d0",
+      "bytes": 1671
+    },
+    {
+      "path": "style.css",
+      "sha256": "eafb5d6c876561f64f7ebb6c494f6fd1b7ea704eb1e76e7cbb88e15b93f1184e",
+      "bytes": 26470
+    },
+    {
+      "path": "workspace.css",
+      "sha256": "b5fa7a89e118e485f12a4e713b20233ad4573cb80ff22f7aacf39d1b6e07a79f",
+      "bytes": 12550
+    },
+    {
+      "path": "app.js",
+      "sha256": "880c60ba2870e7bb192887c4d34b638c64e43d96c03f448914dbbd10931c4961",
+      "bytes": 53260
+    },
+    {
+      "path": "player-core.mjs",
+      "sha256": "058f652e0f1b6ab0bd5592638429b7bee22ad0d735a22b8baba6b5da49c82e4c",
+      "bytes": 2340
+    },
+    {
+      "path": "static-library.mjs",
+      "sha256": "4a95e23c1792cc07a8c55d349b7774acac18070a67812939f4beef47e69a1673",
+      "bytes": 24180
+    }
+  ],
+  "audioCredit": "Generated with VOICEVOX Nemo; see each material's credit field."
+}
