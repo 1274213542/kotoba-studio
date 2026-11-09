@@ -34,13 +34,13 @@
   "frontendFiles": [
     {
       "path": "index.html",
-      "sha256": "705ae82e7e4a47898556c2580902b7810c200c4736673379c640c3aa67a24074",
-      "bytes": 17428
+      "sha256": "867d1a9298842c0d82f1db1a0c506033448dd2a33fc14a194f53c754c10e2496",
+      "bytes": 19163
     },
     {
       "path": "design.html",
-      "sha256": "f16607568b3ed486002a00dd2f2485e4670c15d2812a59086cf97f51bdb9742a",
-      "bytes": 8309
+      "sha256": "5a8a8ac69ca45e17e73f15278efdc3fcd22a8c1ea1be678e9c54898ceffb2ae2",
+      "bytes": 9114
     },
     {
       "path": "favicon.svg",
@@ -63,14 +63,19 @@
       "bytes": 12550
     },
     {
+      "path": "mobile-app.css",
+      "sha256": "cd79bb222675e5f8f2d75a3476d49aa342cc42078856891cc7a584f50325d365",
+      "bytes": 13070
+    },
+    {
       "path": "app.js",
-      "sha256": "48ca36e8ab11543662b72fe14064374a82a7f1cba11c5244e92679782b53610d",
-      "bytes": 53308
+      "sha256": "2f3906dc37d87583cd3067e78dce8a72b85d78f7b9ba0406dd2ae787af553c0a",
+      "bytes": 59666
     },
     {
       "path": "player-core.mjs",
-      "sha256": "058f652e0f1b6ab0bd5592638429b7bee22ad0d735a22b8baba6b5da49c82e4c",
-      "bytes": 2340
+      "sha256": "61dbd748aaf3ee83e0bf3729a514bfe074661778f53bb42d7d14e28dfe05668f",
+      "bytes": 3184
     },
     {
       "path": "static-library.mjs",

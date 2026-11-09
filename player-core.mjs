@@ -1,4 +1,18 @@
 export const displayCues = material => material.cues.filter(c => c.kind !== 'narration' && c.kind !== 'navigation_label' && !c.noTranscript);
+export function questionSelection(cues, questionId, queue) {
+  const ids = [...new Set(displayCues({cues}).filter(c => c.questionId === questionId).map(c => c.id))];
+  const picked = new Set(queue), selected = ids.filter(id => picked.has(id)).length;
+  return {ids, selected, total:ids.length, status:!selected ? 'none' : selected === ids.length ? 'all' : 'partial'};
+}
+export function removeQuestionSelection(cues, questionId, queue) {
+  const ids = new Set(questionSelection(cues, questionId, queue).ids);
+  return [...new Set(queue)].filter(id => !ids.has(id));
+}
+export function toggleQuestionSelection(cues, questionId, queue) {
+  const selection = questionSelection(cues, questionId, queue);
+  if (selection.status === 'all') return removeQuestionSelection(cues, questionId, queue);
+  return [...new Set([...queue, ...selection.ids])];
+}
 export const clamp = (value, min, max) => Math.max(min, Math.min(max, value));
 export function cueAt(cues, time) {
   if (!cues.length) return null;

@@ -4,9 +4,9 @@
   <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <meta name="theme-color" content="#f8f9fb"><meta name="description" content="本机日语听读与面试复习工作台">
   <title>ことば · 日语听读</title><link rel="icon" href="./favicon.svg" type="image/svg+xml">
-  <link rel="stylesheet" href="./tokens.css"><link rel="stylesheet" href="./style.css"><link rel="stylesheet" href="./workspace.css">
+  <link rel="stylesheet" href="./tokens.css"><link rel="stylesheet" href="./style.css"><link rel="stylesheet" href="./workspace.css"><link rel="stylesheet" href="./mobile-app.css">
 </head>
-<body>
+<body data-mobile-view="reader">
 <a class="skip-link" href="#reader">跳到文稿</a>
 <div class="workspace" id="workspace">
   <aside class="sidebar" id="sidebar" aria-label="资料与题目目录">
@@ -28,12 +28,12 @@
   </main>
   <aside class="practice" id="practice" aria-label="复读练习">
     <div class="practice-title"><div><span class="eyebrow">YOUR PRACTICE</span><h2>复读练习</h2></div><button class="icon-button close-panel" id="closeQueue" aria-label="关闭练习面板"><span data-icon="x"></span></button></div>
-    <div class="practice-tabs" role="tablist" aria-label="练习方式"><button id="queueTab" role="tab" aria-selected="true" aria-controls="queuePanel">选句清单 <span id="queueCount" class="count">0</span></button><button id="rangeTab" role="tab" aria-selected="false" aria-controls="rangePanel">连续区间</button></div>
+    <div class="practice-tabs" role="tablist" aria-label="练习方式"><button id="queueTab" role="tab" aria-selected="true" aria-controls="queuePanel">收藏清单 <span id="queueCount" class="count">0</span></button><button id="rangeTab" role="tab" aria-selected="false" aria-controls="rangePanel">连续区间</button></div>
     <section class="practice-panel" id="queuePanel" role="tabpanel" aria-labelledby="queueTab">
-      <p class="practice-description">点击文稿旁的星标，收集分散的句子，按清单顺序循环听。</p>
+      <p class="practice-description">收藏整题，或点星标收藏单句。按清单顺序循环听。</p>
       <div class="queue-tools"><label class="sr-only" for="queueSelect">已保存清单</label><select id="queueSelect"><option value="">当前选择</option></select><button id="saveQueue" class="icon-button" aria-label="保存当前清单" title="保存当前清单"><span data-icon="save"></span></button></div>
+      <div class="queue-actions"><div class="queue-summary" id="queueSummary">尚未选择句子</div><button class="button wide" id="playQueue" disabled><span data-icon="repeat"></span>循环播放清单</button><button class="text-button" id="clearQueue" disabled>清空全部</button></div>
       <div id="queueList" class="queue-list"></div>
-      <div class="queue-actions"><div class="queue-summary" id="queueSummary">尚未选择句子</div><button class="button wide" id="playQueue" disabled><span data-icon="repeat"></span>循环播放清单</button><button class="text-button" id="clearQueue" disabled>清空当前选择</button></div>
     </section>
     <section class="practice-panel" id="rangePanel" role="tabpanel" aria-labelledby="rangeTab" hidden>
       <p class="practice-description">在文稿里选择起句和结束句，反复听这一段。</p>
@@ -51,11 +51,22 @@
 </div>
 <div class="drawer-shade" id="drawerShade" hidden></div>
 <footer class="player" aria-label="音频播放器">
-  <div class="player-info"><div class="audio-art" aria-hidden="true"><span></span><span></span><span></span><span></span></div><div class="player-title"><strong id="playingTitle">准备播放</strong><small id="playingSubtitle">VOICEVOX Nemo · 女声1</small></div></div>
+  <button class="player-info" id="expandPlayer" aria-label="打开播放设置"><div class="audio-art" aria-hidden="true"><span></span><span></span><span></span><span></span></div><div class="player-title"><strong id="playingTitle">准备播放</strong><small id="playingSubtitle">VOICEVOX Nemo · 女声1</small></div><span class="expand-indicator" data-icon="up"></span></button>
   <div class="player-center"><div class="transport"><button class="icon-button" id="previousCue" aria-label="上一句" title="上一句（J）"><span data-icon="previous"></span></button><button class="play-button" id="playButton" aria-label="播放" title="播放 / 暂停（空格）" disabled><span data-icon="play"></span></button><button class="icon-button" id="nextCue" aria-label="下一句" title="下一句（K）"><span data-icon="next"></span></button><label class="sr-only" for="speed">播放速度</label><select id="speed" class="mini-select" title="播放速度"><option value="0.6">0.6×</option><option value="0.75">0.75×</option><option value="0.9">0.9×</option><option value="1" selected>1.0×</option><option value="1.1">1.1×</option><option value="1.25">1.25×</option><option value="1.5">1.5×</option><option value="2">2.0×</option></select></div><div class="seek-row"><time id="currentTime">00:00</time><input id="seek" type="range" min="0" max="100" step="0.05" value="0" aria-label="播放进度"><time id="totalTime">00:00</time></div></div>
   <div class="player-options"><label class="repeat-control"><span data-icon="repeat"></span><select id="repeatMode" aria-label="循环方式"><option value="off">顺序播放</option><option value="all">整份循环</option><option value="question">本题循环</option><option value="sentence">单句循环</option><option value="range">区间循环</option><option value="queue">清单循环</option></select></label><div class="volume-control"><button class="icon-button" id="muteButton" aria-label="静音" title="静音"><span data-icon="volume"></span></button><input type="range" id="volume" min="0" max="1" step="0.05" value="0.8" aria-label="音量"></div></div>
+  <div class="mini-transport"><button class="play-button" id="miniPlay" aria-label="播放" disabled><span data-icon="play"></span></button><button class="icon-button" id="miniNext" aria-label="下一句"><span data-icon="next"></span></button></div>
+  <div class="mini-progress" aria-hidden="true"><span id="miniProgress"></span></div>
   <audio id="audio" preload="metadata"></audio>
 </footer>
+<nav class="mobile-tabs" id="mobileTabs" aria-label="主导航">
+  <a href="#view=library" data-view="library"><span data-icon="list"></span><span>资料</span></a>
+  <a href="#view=reader" data-view="reader" aria-current="page"><span data-icon="volume"></span><span>听读</span></a>
+  <a href="#view=practice" data-view="practice"><span class="nav-icon"><span data-icon="repeat"></span><span id="mobileQueueCount" class="nav-badge" hidden>0</span></span><span>复读</span></a>
+</nav>
+<dialog id="playerDialog" class="player-dialog" aria-labelledby="playerHeading">
+  <div class="dialog-header"><div><span class="eyebrow">NOW PLAYING</span><h2 id="playerHeading">播放设置</h2></div><button class="icon-button" data-close="playerDialog" aria-label="收起播放设置"><span data-icon="down"></span></button></div>
+  <div class="dialog-body"><p id="expandedTitle" class="expanded-title"></p><div id="expandedControls"></div><a id="expandedDownload" class="button secondary wide" download><span data-icon="download"></span>导出音频</a></div>
+</dialog>
 <dialog id="importDialog" class="import-dialog" aria-labelledby="importHeading">
   <div class="dialog-header"><div><span class="eyebrow">NEW MATERIAL</span><h2 id="importHeading">把文稿变成听读资料</h2></div><button class="icon-button" data-close="importDialog" aria-label="关闭导入"><span data-icon="x"></span></button></div>
   <div class="import-tabs" role="tablist"><button class="active" id="textTab" role="tab" aria-selected="true" aria-controls="textImport">文字生成语音</button><button id="audioTab" role="tab" aria-selected="false" aria-controls="audioImport">导入已有音频</button></div>
@@ -66,7 +77,7 @@
   <div class="dialog-footer"><span class="helper"><span class="status-dot"></span><span id="importStorage">文件和文稿保存在这台电脑</span></span><div class="actions"><button class="button secondary" id="importDismiss" data-close="importDialog">取消</button><button class="button" id="importNext">下一步：确认分题<span data-icon="arrow-right"></span></button></div></div>
 </dialog>
 <dialog id="saveDialog" class="small-dialog" aria-labelledby="saveHeading"><div class="dialog-header"><h2 id="saveHeading">保存复读清单</h2><button class="icon-button" data-close="saveDialog" aria-label="关闭"><span data-icon="x"></span></button></div><form id="saveQueueForm"><div class="dialog-body"><label class="field-label" for="queueName">清单名称</label><input class="full-input" id="queueName" required maxlength="60" placeholder="例如：今天重点练习"></div><div class="dialog-footer"><span class="helper">按当前选择顺序保存</span><button class="button" type="submit">保存清单</button></div></form></dialog>
-<dialog id="helpDialog" class="small-dialog" aria-labelledby="helpHeading"><div class="dialog-header"><h2 id="helpHeading">随时听，从任意一句开始</h2><button class="icon-button" data-close="helpDialog" aria-label="关闭说明"><span data-icon="x"></span></button></div><div class="dialog-body help-copy"><p>点击日语句子即可从那里播放。右侧星标把句子加入重点清单；每题标题旁的星标可以一次加入整题。</p><p>循环方式在底部选择。在「连续区间」里点击选择起句，再到文稿中依次点选起句和结束句。分散的句子使用「选句清单」。</p><p>手动滚动文稿会暂时关闭跟随。点击「跟随播放」回到正在读的地方。刷新页面会记住进度，但不会自动开始播放。</p><p>空格：播放/暂停；J / K：上一句/下一句；左右方向键：退后/前进 5 秒。输入文字时不触发快捷键。</p><p id="helpSource">自动假名和识别字幕可能存在专名误读。导入后可以校正文稿与句子时间。原始 Goodpatch 文稿不会被改动。</p><p class="credit" id="helpCredit">音声：VOICEVOX Nemo · 女声1<br>本机网页，请保持服务运行；电脑休眠时播放会停止。</p><div class="actions"><a href="./design.html" target="_blank" rel="noopener" class="button secondary">查看界面规范</a></div></div></dialog>
+<dialog id="helpDialog" class="small-dialog" aria-labelledby="helpHeading"><div class="dialog-header"><h2 id="helpHeading">随时听，从任意一句开始</h2><button class="icon-button" data-close="helpDialog" aria-label="关闭说明"><span data-icon="x"></span></button></div><div class="dialog-body help-copy"><p>点击日语句子即可从那里播放。句子旁的星标只收藏这一句。「收藏整题」一次选中整题，再点一次取消整题；部分选中时点击可补齐整题。</p><p>手机点击底部正在播放的标题，可调节进度、速度和循环方式。在「连续区间」里点击选择起句，再到文稿中依次点选起句和结束句。分散的句子使用「收藏清单」，可以整题移除或一键清空，并撤销最近一次操作。</p><p>手动滚动文稿会暂时关闭跟随。点击「跟随播放」回到正在读的地方。刷新页面会记住进度，但不会自动开始播放。</p><p>空格：播放/暂停；J / K：上一句/下一句；左右方向键：退后/前进 5 秒。输入文字时不触发快捷键。</p><p id="helpSource">自动假名和识别字幕可能存在专名误读。导入后可以校正文稿与句子时间。原始 Goodpatch 文稿不会被改动。</p><p class="credit" id="helpCredit">音声：VOICEVOX Nemo · 女声1<br>本机网页，请保持服务运行；电脑休眠时播放会停止。</p><div class="actions"><a href="./design.html" target="_blank" rel="noopener" class="button secondary">查看界面规范</a></div></div></dialog>
 <dialog id="editDialog" class="import-dialog" aria-labelledby="editHeading"><div class="dialog-header"><div><span class="eyebrow">TRANSCRIPT</span><h2 id="editHeading">校正文稿与时间</h2></div><button class="icon-button" data-close="editDialog" aria-label="关闭校正"><span data-icon="x"></span></button></div><div class="dialog-body"><p class="helper">时间以整份音频的秒数为准；相邻句子不可重叠。修改文字不会重新合成已有声音。</p><div id="cueEditor"></div><p class="form-error" id="editError" role="alert" hidden></p></div><div class="dialog-footer"><span class="helper">修改保存为本机文稿，原音频保持不变</span><button class="button" id="saveTranscript">保存修改</button></div></dialog>
 <div class="toast" id="toast" role="status" hidden></div>
 <script type="module" src="./app.js"></script>
