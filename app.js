@@ -90,7 +90,7 @@ async function loadMaterial(id) {
     $('questionCount').textContent = material.questions.length;
     $('downloadAudio').href = material.audioUrl; $('downloadAudio').download = `${material.title}.mp3`;
     $('totalTime').textContent = formatTime(material.duration); $('seek').max = material.duration;
-    $('playingSubtitle').textContent = material.voice || '本机音频'; $('playButton').disabled = false;
+    $('playingTitle').textContent = material.title; $('playingSubtitle').textContent = material.voice || '本机音频'; $('playButton').disabled = false;
     $('questionSearch').value = ''; renderNav(); renderDocument(); renderQueue(); renderRange(); updateFollow();
     state.loading = false; configurePlayback(clamp(saved.position || 0,0,material.duration),false); updateProgress(true);
     if (/asr|transcri/i.test(String(material.source)) || material.cues.some(c => c.timing === 'asr')) notice('这份字幕由本机自动识别生成，可通过「校正文稿」调整文字和时间。'); else notice(state.storageWarning||'');
