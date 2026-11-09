@@ -317,7 +317,7 @@ function renderSections(){
 async function submitImport(){
   if(state.importBusy)return;
   $('importError').hidden=true;const button=$('importNext');
-  if(state.completedMaterial){$('importDialog').close();tryPlay();return;}
+  if(state.completedMaterial){$('importDialog').close();setMobileView('reader');tryPlay();return;}
   state.importBusy=true;updateImportButton();button.disabled=true;button.textContent=state.importStep===1&&state.importType==='text'?'正在识别分题…':'正在提交…';
   try{
     if(state.importType==='text'&&state.importStep===1){

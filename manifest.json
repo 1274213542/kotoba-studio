@@ -69,8 +69,8 @@
     },
     {
       "path": "app.js",
-      "sha256": "2f3906dc37d87583cd3067e78dce8a72b85d78f7b9ba0406dd2ae787af553c0a",
-      "bytes": 59666
+      "sha256": "9cd2f45f43f4883a69c164c53572f817f683eea8623ce5072676f954fababfaa",
+      "bytes": 59690
     },
     {
       "path": "player-core.mjs",
